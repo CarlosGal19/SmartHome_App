@@ -1,31 +1,44 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import LedCard from "@/components/cards/LedCard";
+import { StyleSheet, View } from "react-native";
 
 export default function TabTwoScreen() {
+
+  const leds = [
+    { name: "Door", value: "door", icon_name: "lock-closed" },
+    { name: "Living Room", value: "living_room", icon_name: "tv-outline" },
+    { name: "Room 1", value: "room_1", icon_name: "bed" },
+    { name: "Room 2", value: "room_2", icon_name: "bed" },
+    { name: "Hallway", value: "hallway", icon_name: "walk" },
+    { name: "Bathroom", value: "bathroom", icon_name: "water-outline" },
+    { name: "Kitchen", value: "kitchen", icon_name: "restaurant" },
+    { name: "Patio", value: "patio", icon_name: "leaf" }
+  ];
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      {leds.map((led, index) => (
+        <View key={index} style={styles.cardWrapper}>
+          <LedCard
+            name={led.name}
+            value={led.value}
+            icon_name={led.icon_name}
+          />
+        </View>
+      ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    paddingHorizontal: 10,
+    justifyContent: "space-between",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+
+  cardWrapper: {
+    width: "48%",
+    marginBottom: 15,
   },
 });
