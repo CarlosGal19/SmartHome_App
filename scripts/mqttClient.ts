@@ -1,6 +1,7 @@
+import { SERVER_URL } from "@env";
 import mqtt from "mqtt";
 
-export const mqttClient = mqtt.connect('ws://89.116.191.188:9001', {
+export const mqttClient = mqtt.connect(SERVER_URL || '', {
     reconnectPeriod: 2000
 })
 
